@@ -11,32 +11,40 @@ class Student:
     # ---------- score ops ----------
     def add_score(self, value: float) -> None:
         self._validate_score(value)
-        # TODO: implement penambahan score
+        self.scores.append(value)
 
     def edit_score(self, index: int, new_value: float) -> None:
         if index < 0 or index >= len(self.scores):
             raise IndexError("Index nilai tidak valid")
         self._validate_score(new_value)
-        # TODO: edit score dengan specific index
+        self.scores[index] = new_value
 
-    def remove_score(self, index: int) -> None:
+    def delete_score(self, index: int) -> None:
         if index < 0 or index >= len(self.scores):
             raise IndexError("Index nilai tidak valid")
-        # TODO: hapus score dengan specific index
+        self.scores.pop(index)
 
     # ---------- derived metrics ----------
     def average(self) -> float:
-        # TODO: hitung rata-rata score, kembalikan 0.0 jika tidak ada score
         return sum(self.scores) / len(self.scores) if self.scores else 0.0
 
     def grade(self) -> str:
         avg = self.average()
-        # TODO: kembalikan grade berdasarkan kondisi average
-        return "E"
+        if avg >= 85:
+            return "A"
+        elif avg >= 70:
+            return "B"
+        elif avg >= 60:
+            return "C"
+        elif avg >= 50:
+            return "D"
+        else:
+            return "E"
 
     # ---------- utils ----------
-    # TODO: buat fungsi infoLine() yang return string dengan format:
-    # Nama | scores=[..] | avg=.. | grade=..
+    def info_line(self) -> str:
+        scores_str = "[" + ", ".join(f"{s:.2f}" for s in self.scores) + "]"
+        return f"{self.name} | scores={scores_str} | avg={self.average():.2f} | grade={self.grade()}"
 
     def to_dict(self) -> Dict:
         return {"name": self.name, "scores": self.scores}

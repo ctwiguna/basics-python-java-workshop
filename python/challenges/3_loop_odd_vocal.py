@@ -1,11 +1,15 @@
-# TODO: Program untuk mencetak bilangan ganjil dari 1 hingga 15
-odd_numbers = []
-print(odd_numbers)
+
+# Program List Angka Ganjil dan Hitung Vokal
+
+#  List semua angka ganjil 1-15 dalam satu baris kode
+angka_ganjil = [i for i in range(1, 16) if i % 2 != 0]
+print(angka_ganjil)
+
+
+kata = input("Masukkan kata: ")
 
 # TODO: Program menghitung jumlah huruf vokal
-word = input("Masukkan kata: ").lower()
+vokal = "aiueoAIUEO"
+jumlah_vokal = sum(1 for huruf in kata if huruf in vokal)
 
-vowels = "aiueo"
-count = 0
-
-print("Jumlah huruf vokal:", count)
+print(f"Jumlah huruf vokal: {jumlah_vokal}")
